@@ -48,6 +48,10 @@ def main():
             if event.type == pg.QUIT: 
                 return
         
+        if kk_rct.colliderect(bom_rct):
+            print("Game Over")
+            return
+
         key_lst = pg.key.get_pressed()
         sum_move = [0,0]
         for k, tpi in delta.items():
@@ -60,6 +64,7 @@ def main():
         if check_bound(kk_rct) != (True, True):
             kk_rct.move_ip(-sum_move[0], -sum_move[1])
         screen.blit(kk_img, kk_rct)
+
         bom_rct.move_ip(vx,vy)
         yoko, tate = check_bound(bom_rct)
         if not yoko:
