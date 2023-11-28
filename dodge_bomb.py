@@ -66,34 +66,34 @@ def main():
                 sum_move[1] += tpi[1]
 
             #  演習１のとちゅう
-                """if sum_move[0] == -5 and sum_move[1] == 0:  
+                """if sum_move[0] == -5 and sum_move[1] == 0:  # 進む方向によって、こうかとんの画像の変更
                     kk_img = pg.transform.rotozoom(kk_img,  0, 1.0)
                     kk_rct = kk_img.get_rect()
-                elif sum_move[0] == -5 and sum_move[1] == -5:
+                elif sum_move[0] == -5 and sum_move[1] == -5:  # 進む方向によって、こうかとんの画像の変更
                     kk_img = pg.transform.rotozoom(kk_img, 45, 1.0)
                     kk_rct = kk_img.get_rect()
-                elif sum_move[0] ==  0 and sum_move[1] == -5:
+                elif sum_move[0] ==  0 and sum_move[1] == -5:  # 進む方向によって、こうかとんの画像の変更
                     kk_img = pg.transform.rotozoom(kk_img, 90, 1.0)
                     kk_rct = kk_img.get_rect()
-                elif sum_move[0] ==  5 and sum_move[1] == -5:
+                elif sum_move[0] ==  5 and sum_move[1] == -5:  # 進む方向によって、こうかとんの画像の変更
                     kk_img = pg.transform.rotozoom(kk_img, 135, 1.0)
                     kk_rct = kk_img.get_rect()
-                elif sum_move[0] ==  5 and sum_move[1] == 0:
+                elif sum_move[0] ==  5 and sum_move[1] == 0:  # 進む方向によって、こうかとんの画像の変更
                     kk_img = pg.transform.rotozoom(kk_img, 180, 1.0)
                     kk_rct = kk_img.get_rect()
-                elif sum_move[0] ==  5 and sum_move[1] ==  5:
+                elif sum_move[0] ==  5 and sum_move[1] ==  5:  # 進む方向によって、こうかとんの画像の変更
                     kk_img = pg.transform.rotozoom(kk_img, 225, 1.0)
                     kk_rct = kk_img.get_rect()
-                elif sum_move[0] ==  0 and sum_move[1] ==  5:
+                elif sum_move[0] ==  0 and sum_move[1] ==  5:  # 進む方向によって、こうかとんの画像の変更
                     kk_img = pg.transform.rotozoom(kk_img, 270, 1.0)
                     kk_rct = kk_img.get_rect()
-                elif sum_move[0] == -5 and sum_move[1] ==  5:
+                elif sum_move[0] == -5 and sum_move[1] ==  5:  # 進む方向によって、こうかとんの画像の変更
                     kk_img = pg.transform.rotozoom(kk_img, 315, 1.0)
                     kk_rct = kk_img.get_rect()"""
 
         """if tmr >= 0:
-            bom_img = pg.Surface((20+tmr,20+tmr))  
-            pg.draw.circle(bom_img, (255, 0, 0), (10+tmr, 10+tmr), 10+tmr)  
+            bom_img = pg.Surface((20+tmr,20+tmr))  # Surfaceの大きさを時間によって変更
+            pg.draw.circle(bom_img, (255, 0, 0), (10+tmr, 10+tmr), 10+tmr)  # 大きさと中心座標の変更
             bom_img.set_colorkey((0, 0, 0))
             screen.blit(bom_img, bom_rct)"""
         
@@ -104,7 +104,7 @@ def main():
         if 511 <= tmr <= 765:
             pg.draw.circle(bom_img, (255, 255, 0-tmr+765), (10, 10), 10)
         if tmr >=766:
-            tmr =0
+            tmr =21
         
             
         screen.blit(bg_img, [0, 0])
