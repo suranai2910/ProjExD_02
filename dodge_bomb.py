@@ -27,6 +27,7 @@ def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
 
 
 def main():
+    tmr = 21
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
@@ -41,9 +42,8 @@ def main():
     bom_rct.centerx = random.randint(0, WIDTH)  # 
     bom_rct.centery = random.randint(0, HEIGHT)
     vx, vy = +5, -5  # 練習２：爆弾の速度    
-
+ 
     clock = pg.time.Clock()
-    tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
@@ -51,12 +51,12 @@ def main():
         
         if kk_rct.colliderect(bom_rct):
             tmr = 0
-            kk_img = pg.image.load("ex02/fig/8.png")
+            kk_img = pg.image.load("ex02/fig/8.png")  # 演習３
             kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
             screen.blit(kk_img, kk_rct)
-            if tmr == 30:
-                print("Game Over")
-                return
+        if tmr == 20:
+            print("Game Over")
+            return
 
         key_lst = pg.key.get_pressed()
         sum_move = [0, 0]
@@ -66,7 +66,7 @@ def main():
                 sum_move[1] += tpi[1]
 
             #  演習１のとちゅう
-                """if sum_move[0] == -5 and sum_move[1] == 0:
+                """if sum_move[0] == -5 and sum_move[1] == 0:  
                     kk_img = pg.transform.rotozoom(kk_img,  0, 1.0)
                     kk_rct = kk_img.get_rect()
                 elif sum_move[0] == -5 and sum_move[1] == -5:
@@ -91,6 +91,22 @@ def main():
                     kk_img = pg.transform.rotozoom(kk_img, 315, 1.0)
                     kk_rct = kk_img.get_rect()"""
 
+        """if tmr >= 0:
+            bom_img = pg.Surface((20+tmr,20+tmr))  
+            pg.draw.circle(bom_img, (255, 0, 0), (10+tmr, 10+tmr), 10+tmr)  
+            bom_img.set_colorkey((0, 0, 0))
+            screen.blit(bom_img, bom_rct)"""
+        
+        if tmr <= 255:  # 時間にあわせた爆弾の色の変更
+            pg.draw.circle(bom_img, (255-tmr, 0+tmr, 0+tmr), (10, 10), 10)
+        if 256 <= tmr  <= 510:
+            pg.draw.circle(bom_img, (255, 0-tmr+510, 0), (10, 10), 10)
+        if 511 <= tmr <= 765:
+            pg.draw.circle(bom_img, (255, 255, 0-tmr+765), (10, 10), 10)
+        if tmr >=766:
+            tmr =0
+        
+            
         screen.blit(bg_img, [0, 0])
         kk_rct.move_ip(sum_move[0], sum_move[1])
         if check_bound(kk_rct) != (True, True):
@@ -106,7 +122,7 @@ def main():
         screen.blit(bom_img, bom_rct)
         pg.display.update()
         tmr += 1
-        clock.tick(10)
+        clock.tick(100)
 
 
 if __name__ == "__main__":
