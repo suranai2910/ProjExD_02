@@ -18,6 +18,9 @@ def main():
     bom_rct = bom_img.get_rect()  # 練習1
     bom_rct.centerx = random.randint(0, WIDTH)  # 
     bom_rct.centery = random.randint(0, HEIGHT)
+    vx, vy = +5, -5  # 練習２：爆弾の速度
+
+
     clock = pg.time.Clock()
     tmr = 0
     while True:
@@ -27,6 +30,7 @@ def main():
 
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, [900, 400])
+        bom_rct.move_ip(vx,vy)
         screen.blit(bom_img, bom_rct)
         pg.display.update()
         tmr += 1
