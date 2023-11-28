@@ -25,6 +25,7 @@ def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
         tate = False
     return (yoko, tate)
 
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -49,15 +50,46 @@ def main():
                 return
         
         if kk_rct.colliderect(bom_rct):
-            print("Game Over")
-            return
+            tmr = 0
+            kk_img = pg.image.load("ex02/fig/8.png")
+            kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
+            screen.blit(kk_img, kk_rct)
+            if tmr == 30:
+                print("Game Over")
+                return
 
         key_lst = pg.key.get_pressed()
-        sum_move = [0,0]
+        sum_move = [0, 0]
         for k, tpi in delta.items():
             if key_lst[k]: # キーが押されたら
                 sum_move[0] += tpi[0]
                 sum_move[1] += tpi[1]
+
+            #  演習１のとちゅう
+                """if sum_move[0] == -5 and sum_move[1] == 0:
+                    kk_img = pg.transform.rotozoom(kk_img,  0, 1.0)
+                    kk_rct = kk_img.get_rect()
+                elif sum_move[0] == -5 and sum_move[1] == -5:
+                    kk_img = pg.transform.rotozoom(kk_img, 45, 1.0)
+                    kk_rct = kk_img.get_rect()
+                elif sum_move[0] ==  0 and sum_move[1] == -5:
+                    kk_img = pg.transform.rotozoom(kk_img, 90, 1.0)
+                    kk_rct = kk_img.get_rect()
+                elif sum_move[0] ==  5 and sum_move[1] == -5:
+                    kk_img = pg.transform.rotozoom(kk_img, 135, 1.0)
+                    kk_rct = kk_img.get_rect()
+                elif sum_move[0] ==  5 and sum_move[1] == 0:
+                    kk_img = pg.transform.rotozoom(kk_img, 180, 1.0)
+                    kk_rct = kk_img.get_rect()
+                elif sum_move[0] ==  5 and sum_move[1] ==  5:
+                    kk_img = pg.transform.rotozoom(kk_img, 225, 1.0)
+                    kk_rct = kk_img.get_rect()
+                elif sum_move[0] ==  0 and sum_move[1] ==  5:
+                    kk_img = pg.transform.rotozoom(kk_img, 270, 1.0)
+                    kk_rct = kk_img.get_rect()
+                elif sum_move[0] == -5 and sum_move[1] ==  5:
+                    kk_img = pg.transform.rotozoom(kk_img, 315, 1.0)
+                    kk_rct = kk_img.get_rect()"""
 
         screen.blit(bg_img, [0, 0])
         kk_rct.move_ip(sum_move[0], sum_move[1])
@@ -74,7 +106,7 @@ def main():
         screen.blit(bom_img, bom_rct)
         pg.display.update()
         tmr += 1
-        clock.tick(50)
+        clock.tick(10)
 
 
 if __name__ == "__main__":
